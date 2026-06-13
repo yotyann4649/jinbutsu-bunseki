@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>三占術 人間分析システム（自動計算・複数人管理版・全10回）</title>
+<title>三占術 人間分析システム（自動計算・複数人管理版・全15回）</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   .custom-scrollbar::-webkit-scrollbar { width: 8px; }
@@ -24,7 +24,7 @@
     </div>
     <div>
       <h1 class="text-xl font-bold tracking-tight text-white">三占術 人間分析システム</h1>
-      <p class="text-xs text-indigo-400">数秘術 自動計算 / 複数人管理 / JSON入出力 / 全10回</p>
+      <p class="text-xs text-indigo-400">数秘術 自動計算 / 複数人管理 / JSON入出力 / 全15回</p>
     </div>
   </div>
   <div class="flex items-center gap-2 flex-wrap">
@@ -45,7 +45,7 @@
   <aside class="w-full md:w-1/3 lg:w-1/4 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col flex-1 md:flex-none min-h-0">
     <div class="flex-shrink-0 p-3 bg-indigo-900/20 border-b border-indigo-900/30 text-xs flex items-start gap-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400 flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-      <p id="status-text" class="text-slate-300">「新規/編集」から対象者を登録すると、数秘術が自動計算され10回分の台本が完成します。</p>
+      <p id="status-text" class="text-slate-300">「新規/編集」から対象者を登録すると、数秘術が自動計算され15回分の台本が完成します。</p>
     </div>
     <div class="md:hidden flex-shrink-0 p-2 border-b border-slate-800">
       <select id="episode-select" class="w-full bg-slate-800 text-slate-200 text-sm rounded-md px-3 py-2 border border-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500"></select>
@@ -435,7 +435,7 @@ function refreshPersonSelect(){
   const cnt=Object.keys(people).length;
   statusText.textContent = cnt
     ? `登録済み${cnt}名。上の選択メニューで切替、「新規/編集」で追加・修正できます。`+(storageOK?'':'（※この環境では自動保存が無効。JSON書き出しで保存してください）')
-    : '「新規/編集」から対象者を登録すると、数秘術が自動計算され10回分の台本が完成します。';
+    : '「新規/編集」から対象者を登録すると、数秘術が自動計算され15回分の台本が完成します。';
 }
 
 personSelect.onchange=()=>{
