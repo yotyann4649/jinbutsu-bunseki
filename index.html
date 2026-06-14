@@ -35,6 +35,10 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       新規/編集
     </button>
+    <button id="open-manual" title="使い方を見る" class="flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-semibold bg-slate-700 hover:bg-slate-600 text-slate-200 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      使い方
+    </button>
     <button id="export-btn" title="全データをJSON書き出し" class="px-3 py-2 rounded-md text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
     <button id="import-btn" title="JSONを読み込み" class="px-3 py-2 rounded-md text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></button>
     <input id="import-file" type="file" accept="application/json" class="hidden">
@@ -74,6 +78,160 @@
       <textarea id="prompt-viewer" readonly class="absolute inset-0 w-full h-full p-6 bg-transparent text-slate-300 font-mono text-sm leading-relaxed resize-none focus:outline-none focus:ring-1 focus:ring-indigo-500/50 custom-scrollbar" spellcheck="false"></textarea>
     </div>
   </main>
+</div>
+
+<!-- マニュアルモーダル -->
+<div id="manual-modal" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+  <div class="bg-slate-900 border border-indigo-800/50 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+    <div class="flex-shrink-0 p-5 border-b border-slate-800 flex items-center justify-between">
+      <div>
+        <h3 class="text-lg font-bold text-white">使い方ガイド</h3>
+        <p class="text-xs text-indigo-400 mt-0.5">三占術 人間分析システム（全15回）</p>
+      </div>
+      <button id="close-manual" class="text-slate-400 hover:text-white transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-5 space-y-6 custom-scrollbar text-sm text-slate-300 leading-relaxed">
+
+      <!-- 全体像 -->
+      <div>
+        <h4 class="text-base font-bold text-white mb-3">このツールは何をするものか</h4>
+        <div class="bg-slate-800/60 rounded-lg p-4 space-y-2">
+          <p>このツールは、<span class="text-indigo-300 font-semibold">対象者の生年月日・名前・出生地</span>を入力すると、全15回分の<span class="text-indigo-300 font-semibold">人間分析の台本（プロンプト）</span>を自動生成します。</p>
+          <p>生成された台本を<span class="text-indigo-300 font-semibold">NotebookLM</span>（Googleの無料AIツール）に貼り付けると、男女2人のホストによる<span class="text-indigo-300 font-semibold">音声解説番組</span>が完成します。</p>
+        </div>
+        <!-- フロー図 -->
+        <div class="mt-4 flex items-center gap-1 flex-wrap justify-center text-xs">
+          <div class="bg-indigo-900/50 border border-indigo-700/50 rounded-lg px-3 py-2 text-center">
+            <div class="text-indigo-300 font-semibold">①データ入力</div>
+            <div class="text-slate-400 mt-0.5">生年月日・名前・出生地</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-600 flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <div class="bg-indigo-900/50 border border-indigo-700/50 rounded-lg px-3 py-2 text-center">
+            <div class="text-indigo-300 font-semibold">②台本生成</div>
+            <div class="text-slate-400 mt-0.5">全15回分を自動作成</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-600 flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <div class="bg-indigo-900/50 border border-indigo-700/50 rounded-lg px-3 py-2 text-center">
+            <div class="text-indigo-300 font-semibold">③コピー</div>
+            <div class="text-slate-400 mt-0.5">1回ずつコピー</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-600 flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <div class="bg-indigo-900/50 border border-indigo-700/50 rounded-lg px-3 py-2 text-center">
+            <div class="text-indigo-300 font-semibold">④NotebookLM</div>
+            <div class="text-slate-400 mt-0.5">音声番組を生成</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800"></div>
+
+      <!-- STEP1 -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded">STEP 1</span>
+          <h4 class="font-bold text-white">データを入力する</h4>
+        </div>
+        <ol class="space-y-3 pl-1">
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">1.</span>
+            <div>右上の<span class="bg-indigo-600 text-white text-xs px-1.5 py-0.5 rounded mx-1">新規/編集</span>ボタンを押す。入力フォームが開きます。</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">2.</span>
+            <div><span class="text-indigo-300 font-semibold">呼称・氏名（ローマ字）・生年月日（年/月/日を別々に入力）</span>を記入したら、<span class="bg-indigo-700/60 text-indigo-200 text-xs px-1.5 py-0.5 rounded mx-1">数秘術を自動計算する</span>ボタンを押す。LP・DN・SN等の数値が<span class="text-indigo-300">紫色の欄</span>に自動で入ります。</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">3.</span>
+            <div><span class="text-indigo-300 font-semibold">占星術・四柱推命の値</span>は手入力です。<br>
+              <span class="text-slate-400 text-xs">
+                占星術：「ホロスコープ 無料 作成」で検索 → 生年月日・出生時刻・出生地を入力 → 各天体の星座と度数を転記<br>
+                四柱推命：「四柱推命 無料 命式」で検索 → 生年月日・出生時刻を入力 → 干支・通変星を転記<br>
+                ※出生時刻が不明でも分かる項目だけで分析できます
+              </span>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">4.</span>
+            <div><span class="bg-indigo-600 text-white text-xs px-1.5 py-0.5 rounded mx-1">保存して台本を生成</span>を押すと、15回分の台本が完成します。</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="border-t border-slate-800"></div>
+
+      <!-- STEP2 -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded">STEP 2</span>
+          <h4 class="font-bold text-white">台本をコピーしてNotebookLMに貼る</h4>
+        </div>
+        <ol class="space-y-3 pl-1">
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">5.</span>
+            <div>左側のリストから<span class="text-indigo-300 font-semibold">第1回</span>を選ぶ。右側のプレビュー欄に台本が表示されます。</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">6.</span>
+            <div>右上の<span class="bg-indigo-600 text-white text-xs px-1.5 py-0.5 rounded mx-1">一撃コピー</span>ボタンを押す。台本がクリップボードにコピーされます（読み仮名は自動除去されます）。</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">7.</span>
+            <div><span class="text-indigo-300 font-semibold">NotebookLM</span>（notebooklm.google.com）を開き、新しいノートブックを作成します。「ソースを追加」→「テキストをコピー」にコピーした台本を貼り付けます。</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">8.</span>
+            <div>NotebookLM右上の<span class="text-indigo-300 font-semibold">「音声の概要」→「生成」</span>を押すと、数分で音声番組が完成します。</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 font-bold flex-shrink-0">9.</span>
+            <div>第2回〜第15回も同様に繰り返します。<span class="text-slate-400 text-xs">（←→キーまたはリストのクリックで回を切り替えられます）</span></div>
+          </li>
+        </ol>
+        <div class="mt-3 bg-amber-900/20 border border-amber-700/30 rounded-lg p-3 text-xs text-amber-300/80">
+          ⚠ NotebookLMは1回ごとに新しいノートブックを作成してください。複数回分を同じノートブックに入れると内容が混ざります。
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800"></div>
+
+      <!-- データの安全性 -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-emerald-800 text-emerald-200 text-xs font-bold px-2 py-0.5 rounded">🔒 安心</span>
+          <h4 class="font-bold text-white">入力したデータはどこに保存されるのか</h4>
+        </div>
+        <div class="bg-emerald-900/20 border border-emerald-700/30 rounded-lg p-4 space-y-2 text-xs text-slate-300">
+          <p><span class="text-emerald-400 font-semibold">入力したデータは、あなたのブラウザの中だけに保存されます。</span>サーバーには一切送信されません。</p>
+          <p>このツールはHTMLファイル単体で動いており、外部にデータを送る仕組みを持っていません。他の人がアクセスしても、あなたのデータは見えません。他の人が入力したデータも、あなたには見えません。</p>
+          <p class="text-slate-400">※ブラウザのキャッシュをクリアしたり、シークレットモードで開くと、保存済みのデータが消えることがあります。大切なデータは↓アイコンのJSON書き出しでバックアップしておくことをおすすめします。</p>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800"></div>
+
+      <!-- 複数人管理 -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-slate-700 text-slate-200 text-xs font-bold px-2 py-0.5 rounded">機能</span>
+          <h4 class="font-bold text-white">複数人の管理・保存</h4>
+        </div>
+        <ul class="space-y-2 pl-1 text-slate-400 text-xs">
+          <li>・登録した対象者はブラウザに自動保存されます。上部の選択メニューで切り替えられます。</li>
+          <li>・<span class="text-slate-300">↓アイコン</span>：全データをJSONファイルに書き出し（バックアップ用）</li>
+          <li>・<span class="text-slate-300">↑アイコン</span>：JSONファイルを読み込み（別端末への移行・復元用）</li>
+          <li class="text-amber-400/70">⚠ 自動保存はダウンロードしてPCのブラウザで開いた時に正常に動作します。ブラウザ上（Claude等）で開いた場合は保存されないことがあります。その場合はJSONで書き出してバックアップしてください。</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="flex-shrink-0 p-4 border-t border-slate-800 flex justify-end">
+      <button id="close-manual-btn" class="px-6 py-2.5 rounded-md text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-all">
+        閉じる
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- 入力モーダル -->
@@ -415,6 +573,13 @@ const copyBtn=$('copy-btn'), iconCopy=$('icon-copy'), iconCheck=$('icon-check'),
 const toastOk=$('toast-ok'), toastErr=$('toast-err'), progressLabel=$('progress-label'), progressBar=$('progress-bar');
 const charCount=$('char-count'), subjectTag=$('subject-tag'), statusText=$('status-text'), modal=$('input-modal');
 const personSelect=$('person-select');
+const manualModal=$('manual-modal');
+
+// マニュアルモーダル
+$('open-manual').onclick=()=>manualModal.classList.remove('hidden');
+$('close-manual').onclick=()=>manualModal.classList.add('hidden');
+$('close-manual-btn').onclick=()=>manualModal.classList.add('hidden');
+manualModal.addEventListener('click',e=>{ if(e.target===manualModal) manualModal.classList.add('hidden'); });
 
 function rebuild(){
   built=parse(fillTemplate(data)); basePrompt=built.base; episodes=built.eps; TOTAL=episodes.length;
