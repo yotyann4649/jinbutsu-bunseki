@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>三占術 人間分析システム（自動計算・複数人管理版・全15回）</title>
+<title>三星鑑 人間分析システム（自動計算・複数人管理版・全15回）</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   .custom-scrollbar::-webkit-scrollbar { width: 8px; }
@@ -23,7 +23,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
     </div>
     <div>
-      <h1 class="text-xl font-bold tracking-tight text-white">三占術 人間分析システム</h1>
+      <h1 class="text-xl font-bold tracking-tight text-white">三星鑑 人間分析システム</h1>
       <p class="text-xs text-indigo-400">数秘術 自動計算 / 複数人管理 / JSON入出力 / 全15回</p>
     </div>
   </div>
@@ -86,7 +86,7 @@
     <div class="flex-shrink-0 p-5 border-b border-slate-800 flex items-center justify-between">
       <div>
         <h3 class="text-lg font-bold text-white">使い方ガイド</h3>
-        <p class="text-xs text-indigo-400 mt-0.5">三占術 人間分析システム（全15回）</p>
+        <p class="text-xs text-indigo-400 mt-0.5">三星鑑 人間分析システム（全15回）</p>
       </div>
       <button id="close-manual" class="text-slate-400 hover:text-white transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -398,7 +398,7 @@ function calcNumerology(romaji, y, m, d){
 // ============================================================
 // テンプレート（{{KEY}} を差し替え）
 // ============================================================
-const template = `【三占術 人間分析編：固定ベースプロンプト】
+const template = `【三星鑑 人間分析編：固定ベースプロンプト】
 あなたは全15回の人間分析バラエティラジオ番組「{{NAME}}さん解体新書」のホスト（男女）です。女性ホストは辛口のツッコミ役、男性ホストは面白がりながら深堀りする解説役です。
 対象人物：{{NAME}}さん（生年月日：{{BIRTH}}／出生地：{{BIRTHPLACE}}）。音声解説では必ず「{{NAME}}さん」と敬称付きで呼んでください。
 この番組は占星術・数秘術・四柱推命という三つの分析軸だけを根拠に、{{NAME}}さんという一人の人間を客観的に読み解きます。本人の体験談やエピソードは一切使わず、生年月日・名前・出生地から導かれた分析パラメータのみで分析してください。これにより自己申告のバイアスがない、客観データに基づく純粋な人間分析を行います。
